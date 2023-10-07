@@ -6,6 +6,7 @@
 #define ONE_WIRE_BUS 4
 #define BUTTON1_PIN 2
 #define BUTTON2_PIN 8
+#define ADDR_BUFFER_SZ 16
 
 // Setup a oneWire instance to communicate with any OneWire devices
 OneWire oneWire(ONE_WIRE_BUS);
@@ -13,18 +14,25 @@ OneWire oneWire(ONE_WIRE_BUS);
 // Pass our oneWire reference to Dallas Temperature sensor 
 DallasTemperature sensors(&oneWire);
 DeviceAddress tempDeviceAddress;
+String devaddr;
 int numberOfDevices;
 
 int button1State = 0;
 int button2State = 0;
+
+void printButtonInfo(String dev, int num);
 
 // function to print a device address
 void printAddress(DeviceAddress deviceAddress)
 {
   for (uint8_t i = 0; i < 8; i++)
   {
-    if (deviceAddress[i] < 16) Serial.print("0");
+    if (deviceAddress[i] < 16) {
+      Serial.print("0");
+      devaddr+="0";
+    }
     Serial.print(deviceAddress[i], HEX);
+    devaddr+=String(deviceAddress[i],HEX);
   }
 }
 
@@ -57,22 +65,24 @@ void loop(void){
   //Serial.print(sensors.getTempCByIndex(0)); 
   //Serial.print(" - Fahrenheit temperature: ");
   //Serial.println(sensors.getTempFByIndex(0));
-  Serial.print("Celsius: ");
-  Serial.print(sensors.getTempC(tempDeviceAddress));
-  Serial.print(" Fahrenheit: ");
-  Serial.println(sensors.getTempF(tempDeviceAddress));
+  //Serial.print("Celsius: ");
+  Serial.print(devaddr);
+  Serial.print(" T ");
+  Serial.println(sensors.getTempC(tempDeviceAddress));
+  //Serial.print(" Fahrenheit: ");
+  //Serial.println(sensors.getTempF(tempDeviceAddress));
 
   button1State = digitalRead(BUTTON1_PIN);
   button2State = digitalRead(BUTTON2_PIN);
   if (button1State == 0) {
-    Serial.println(" Button 1 - Pressed!");
+    printButtonInfo(devaddr,1);
     digitalWrite(12,HIGH);
   }
   if (button2State == 0) {
-    Serial.println(" Button 2 - Pressed!");
+    printButtonInfo(devaddr,2);
     digitalWrite(12,HIGH);
   }
-  delay(100);
+  delay(2000);
 
   if (button1State == 0) {
     digitalWrite(12,LOW);
@@ -82,3 +92,8 @@ void loop(void){
   }
 }
 
+void printButtonInfo(String dev, int num) {
+  Serial.print(dev);
+  Serial.print(" B ");
+  Serial.println(num);
+}
