@@ -1,7 +1,7 @@
 import serial
 import time
 from datetime import datetime as dt
-import database_utils as db
+import db as db
 import psycopg2
 
 # make sure the 'COM#' is set according the Windows Device Manager
