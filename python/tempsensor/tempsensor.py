@@ -7,7 +7,7 @@ from sqlalchemy import text
 # make sure the 'COM#' is set according the Windows Device Manager
 def read_temp_sensor(conn):
     ser = serial.Serial('COM3', 9600, timeout=1)
-    time.sleep(5)
+    time.sleep(2)
 
     while True:
         line = ser.readline()   # read a byte

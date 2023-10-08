@@ -30,13 +30,21 @@ def realtime_plot(conn):
         ys = ys+temp_c
 
         # Limit x and y lists to 20 items
-        xs = xs[-30:]
-        ys = ys[-30:]
+        xs = xs[-20:]
+        ys = ys[-20:]
 
+        #print(f"last timestamp: {last_timestamp}")
+        #print(f"xs: {xs}")
+        #print(f"ys: {ys}")
+
+        # if no new data just return
+        if len(xs) < 0 or len(ys) < 0:
+            return
+        
         # Draw x and y lists
         ax.clear()
         ax.plot(xs, ys)
-        ax.set_ylim([0,100])
+        ax.set_ylim([0,30])
 
         # Format plot
         plt.xticks(rotation=80, ha='right')
@@ -45,7 +53,7 @@ def realtime_plot(conn):
         plt.ylabel('Temperature (deg C)')
 
     # Set up plot to call animate() function periodically
-    ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=100)
+    ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=1000)
     plt.show()
 
 def read_from_db(conn, last_timestamp):
