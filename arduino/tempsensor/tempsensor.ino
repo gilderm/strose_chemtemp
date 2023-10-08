@@ -82,7 +82,7 @@ void loop(void){
     printButtonInfo(devaddr,2);
     digitalWrite(12,HIGH);
   }
-  delay(2000);
+  delay(1000);
 
   if (button1State == 0) {
     digitalWrite(12,LOW);
