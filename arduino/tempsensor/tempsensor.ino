@@ -48,7 +48,7 @@ void setup(void)
   sensors.begin();
   numberOfDevices = sensors.getDeviceCount();
   for (int i = 0; i < numberOfDevices; i++) {
-    sensors.getAddress(tempDeviceAddress, 0);
+    sensors.getAddress(tempDeviceAddress, i);
     Serial.print("Found device ");
     Serial.print(i, DEC);
     Serial.print(" with address: ");
