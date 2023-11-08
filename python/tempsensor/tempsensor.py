@@ -3,11 +3,24 @@ import time
 from datetime import datetime as dt
 from db import connect
 from sqlalchemy import text
+from serial.tools.list_ports import comports
+import logging
+
+log = logging.getLogger(__name__)
 
 # make sure the 'COM#' is set according the Windows Device Manager
-def read_temp_sensor(conn):
-    ser = serial.Serial('COM3', 9600, timeout=1)
-    time.sleep(5)
+def connect_to_arduino(baud=9600, timeout=1):
+    arduino_ports = [p for p in comports() if 'arduino' in p.description.lower()]
+    if not arduino_ports:
+        raise IOError("Unable to detect connected Arduino device!")
+    log.info(f"connect to arduino on com port: {arduino_ports[0].device}")
+
+    ser = serial.Serial(arduino_ports[0].device, baud, timeout=timeout)
+    return ser
+
+
+def read_temp_sensor(ser, conn):
+    time.sleep(2)
 
     while True:
         line = ser.readline()   # read a byte
@@ -36,6 +49,7 @@ def insert_into_db(flds, conn=None):
     return id.fetchone()
 
 if __name__ == "__main__":
+    ser = connect_to_arduino()
     conn = connect()
-    read_temp_sensor(conn)
+    read_temp_sensor(ser, conn)
     conn.close()

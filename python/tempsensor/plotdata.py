@@ -5,6 +5,7 @@ import matplotlib.dates as mdates
 from datetime import datetime, timezone
 from db import connect
 from sqlalchemy import text
+from easygui import *
 import numpy as np
 from numpy import array
 
@@ -44,7 +45,7 @@ def realtime_plot(conn, dev_id):
         # Draw x and y lists
         ax.clear()
         ax.plot(xs, ys)
-        ax.set_ylim([25,100])
+        ax.set_ylim([15,90])
 
         myFmt = mdates.DateFormatter("%m-%d %H:%M:%S")
         ax.xaxis.set_major_formatter(myFmt)
@@ -83,9 +84,21 @@ def read_from_db(conn, last_timestamp, dev_id):
 
     return temp_c, temp_time, ts
 
+
+def get_plot_id():
+    text = "Enter Experiment Details"
+    title = "The College of Saint Rose - Chemical Reaction Temperature Monitor"
+    input_list = ["Plot Device ID", "Experiment Details"]
+    dialog_info = multenterbox(text, title, input_list)
+    return dialog_info
+
 if __name__ == "__main__":
-    dev_id = "2"
-    conn = connect()
-    realtime_plot(conn, dev_id)
-    conn.close()
-    #read_from_db(None)
+    info = get_plot_id()
+    if info is not None:
+        dev_id = info[0]
+        exp_details = info[1]
+        conn = connect()
+        realtime_plot(conn, dev_id)
+        conn.close()
+    else:
+        print(f"No plot id was specified!")
