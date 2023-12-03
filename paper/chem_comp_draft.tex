@@ -1,0 +1,132 @@
+\documentclass{article}
+
+\input{preamble}
+
+\addbibresource{references.bib}
+
+\title{
+Computer Science in the Chemistry Lab: An Interdisciplinary Project Involving Arduino-Based Temperature Sensors\footnote{\protect\input{copyright}}
+}
+
+%\begin{lstlisting}
+  \author{
+    Brad Bauer\affmark[1], Mark Gilder\affmark[2], and Judith O'Rourke\affmark[2]\\
+    \affmark[1]Department of Physical and Biological Sciences\\
+    \affmark[2]Computer Science Department\\
+    The College of Saint Rose\\
+    Albany, NY 12203\\
+    \email{\{bauerb,gilderm,orourkej\}@strose.edu}
+  }
+%\end{lstlisting}
+
+\begin{document}
+\maketitle
+
+\input{abstract_short.tex}
+
+\section{Introduction}
+
+\input{introduction.tex}
+
+
+%\section{Title and Author Information}
+%Please follow the example in this paper to enter title and author information.
+%The title should use title-casing. Please use \texttt{https://titlecaseconverter.com}
+%with ``AP'' style to reformat your title.
+
+%Chemistry Section 
+\input{variations.tex}
+
+
+%\subsection{Citation}
+%Appropriately cite all references to other published works included in the paper.
+%\texttt{biblatex} is used to create a list of references or bibliography as the
+%last section in the paper. Here are citation examples for a
+%book\cite{latexcompanion}, a journal paper\cite{einstein}, a
+%website\cite{knuthwebsite}, and a conference proceeding paper\cite{maurer}.
+%Please check out the source code of this document for details.
+
+%\subsection{Double Quote}
+%The proper way to typeset double quote is to use two backticks or grave accents
+%(\`{}) on the left and two single quotes (\'{}) on the right, e.g.
+%\`{}\`{}Hello!\'{}\'{} for ``Hello!''.
+
+\subsection{Reference List}
+The \verb+\printbibliography+ command prints a list of references for you.
+Please use \texttt{sample.bib} as an example to create your bibliography entries.
+
+%If you can find a reference on \url{https://scholar.google.com/} you can get a
+%``BibTex'' export by clicking on the quotation mark symbol, which is a lot easier
+%than entering the information manually.
+
+%\subsection{Code Listings}
+%Commands from \texttt{listings} package allow you to display code easily with
+%customizable coloring and styling rules. Here is an example.
+%Please check out the source code of this document for details.
+
+%\begin{lstlisting}[language=Python,  caption=Python example]
+%x = 42
+%epsilon = 0.01
+%step = epsilon**2
+%num_guesses = 0
+%ans = 0.0
+%while abs(ans**2-x) > epsilon and ans < x:
+%    ans = ans + step
+%    num_guesses += 1
+%if abs(ans**2-x) <= epsilon:
+%    print(str(ans) +
+%    ' is close to the square root of ' +
+%    str(x))
+%else:
+%    print('Failed to find square root of ' + str(x))
+%print("The number of guesses is " + str(num_guesses))
+%\end{lstlisting}
+
+%\section{Manuscript Submission}
+%The following materials will need to be submitted:
+%\begin{enumerate}[noitemsep]
+%  \item The final manuscript in Latex.
+%  \item Copyright release. It is essential that we receive the copyright
+%  release form. By signing this form you are acknowledging that the manuscript
+%  has not been printed in another venue, plus you are retaining your rights for
+%  use of the manuscript. Read the copyright release. The Consortium will not
+%  prohibit you from using the manuscript, but will ask that you credit any reuse
+%  to the Consortium as the original source of publication. If you misplace the
+%  copyright form, a generic copyright form can be found through the Copyright
+%  Release Form\cite{copyright}.\\
+%  The Consortium encourages multiple presentations of tutorials and workshops.
+%  If you are presenting a tutorial or workshop you may retain the copyright,
+%  but we must have that documented. Keep in mind that your manuscript is limited
+%  to two pages total. However, you must still submit a copyright form.\\
+%  Please note that it is critical that you obtain permission to use third party
+%  material. If you use diagrams and such that are attributable to a third party
+%  you must obtain formal permission to reprint such items, and must so indicate
+%  in the copyright release as well as submit such permission.
+%  \item Registration for the conference, along with the appropriate registration
+%  fee. We have found that there are some folks in need of publication for
+%  promotion and tenure purposes, and then don’t want to present the paper.
+%  A major plus of the Consortium conferences is the presentation of the papers,
+%  and you must plan on attending. If you do not present the paper at the
+%  conference the paper will be removed from the ACM Digital Library.
+%  \item A pdf version of your manuscript is most helpful. If there are problems
+%  with special characters or special formatting this provides the editors with
+%  what you expected your final manuscript to look like. Providing a pdf version
+%  or a hard copy helps significantly in envisioning what the author expected
+%  the final product to look like.
+%  \item Electronic copies of any graphics in a standard format (bitmap, jpeg, tiff).
+%\end{enumerate}
+
+%\section{Additional Information}
+%Please feel free to email \verb+ccsc-editors@googlegroups.com+ for questions.
+%This document is modified from the CCSC manuscript formatting
+%document\cite{meinke} created by John Meinke.
+
+\medskip
+
+\printbibliography
+
+\end{document}
+
+
+
+
